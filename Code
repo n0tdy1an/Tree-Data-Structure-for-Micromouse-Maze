@@ -1,0 +1,119 @@
+from platform import node
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.children = []
+
+    def add_child(self, child_node):
+        self.children.append(child_node)
+
+    def __repr__(self):
+        return f"Node({self.data})"
+
+class Tree:
+    def __init__(self, root=None):
+        self.root = root
+
+    def print_tree(self, level=0):
+        if self.root is not None:
+            print("-" * level * 1 + str(self.root.data))
+            for child in self.root.children:
+                Tree(child).print_tree(level + 1)
+
+
+# Start
+node00 = Node("0,0 START")
+node10 = Node("1,0")
+node20 = Node("2,0")
+node30 = Node("3,0")
+node40 = Node("4,0 LEFT")
+node41 = Node("4,1")
+node42 = Node("4,2 ")
+node52 = Node("5,2 RIGHT")
+node51 = Node("5,1")
+node50 = Node("5,0 DEAD END")
+
+node32 = Node("3,2")
+node31 = Node("3,1")
+node21 = Node("2,1")
+node11 = Node("1,1")
+node01 = Node("0,1 DEAD END")
+
+node22 = Node("2,2")
+node23 = Node("2,3")
+node33 = Node("3,3")
+node43 = Node("4,3")
+node53 = Node("5,3 DEAD END")
+
+node24 = Node("2,4")
+node14 = Node("1,4 DEAD END")
+node34 = Node("3,4")
+node44 = Node("4,4")
+node54 = Node("5,4 LEFT")
+node55 = Node("5,5 LEFT")
+node45 = Node("4,5")
+node35 = Node("3,5")
+node25 = Node("2,5")
+node15 = Node("1,5")
+node05 = Node("0,5")
+node04 = Node("0,4")
+node03 = Node("0,3 FINISH")
+
+
+node00.add_child(node10)
+node10.add_child(node20)
+node20.add_child(node30)
+node30.add_child(node40)
+node40.add_child(node41)
+node41.add_child(node42)
+node42.add_child(node52)
+node52.add_child(node51)
+node51.add_child(node50)
+
+tree = Tree(node00)
+tree.print_tree()
+node42.children.clear()
+
+node42.add_child(node32)
+node32.add_child(node31)
+node31.add_child(node21)
+node21.add_child(node11)
+node11.add_child(node01)
+
+tree = Tree(node00)
+tree.print_tree()
+node32.children.clear()
+
+node32.add_child(node22)
+node22.add_child(node23)
+node23.add_child(node33)
+node33.add_child(node43)
+node43.add_child(node53)
+
+tree = Tree(node00)
+tree.print_tree()
+node23.children.clear()
+
+node23.add_child(node24)
+node24.add_child(node14)
+
+tree = Tree(node00)
+tree.print_tree()
+node24.children.clear()
+
+node24.add_child(node34)
+node34.add_child(node44)
+node44.add_child(node54)
+node54.add_child(node55)
+node55.add_child(node45)
+node45.add_child(node35)
+node35.add_child(node25)
+node25.add_child(node15)
+node15.add_child(node05)
+node05.add_child(node04)
+node04.add_child(node03)
+
+tree = Tree(node00)
+tree.print_tree()
